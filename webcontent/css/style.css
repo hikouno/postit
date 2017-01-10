@@ -86,7 +86,7 @@ footer a {color:#439deb}
 #form_1 .input2 {width:62px}
 #form_1 select {width:58px;height:18px;padding:1px;margin-left:5px;margin-top:5px;display:inline-block}
 #form_1 .button {float:right;font-size:12px;color:#fff;width:66px;line-height:26px;text-decoration:none;text-transform:uppercase;text-align:center;background:#3081c8;border-radius:4px;-moz-border-radius:4px;-webkit-border-radius:4px;behavior:url(js/PIE.htc);position:relative;padding:0}
-
+#recherche {color:black;font-size: 20px}
 #carte
 {
 	/*display : inline-block;*/
