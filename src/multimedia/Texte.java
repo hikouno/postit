@@ -1,6 +1,6 @@
 package multimedia;
 
-public class Texte
+public class Texte implements EltMultimedia
 {
 	private String htmlTexte;
 	

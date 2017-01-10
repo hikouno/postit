@@ -1,7 +1,7 @@
 package multimedia;
 
 /** C'est une vidéo Youtube ici */
-public class Video
+public class Video implements EltMultimedia
 {
 	private String chemin;
 	

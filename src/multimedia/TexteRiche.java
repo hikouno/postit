@@ -1,6 +1,6 @@
 package multimedia;
 
-public class TexteRiche
+public class TexteRiche implements EltMultimedia
 {
 	public TexteRiche() {
 		

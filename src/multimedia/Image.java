@@ -1,6 +1,6 @@
 package multimedia;
 
-public class Image
+public class Image implements EltMultimedia
 {
 	private String chemin;
 	
