@@ -1,11 +1,20 @@
 package utilisateur;
 
-public class Membre extends Utilisateur
+public class Membre implements Utilisateur
 {
 	protected Integer id;
 	protected String nom;
 	protected String prenoms;
 	protected String password;
+	protected String pseudo;
+
+	public String getPseudo() {
+		return pseudo;
+	}
+
+	public void setPseudo(String pseudo) {
+		this.pseudo = pseudo;
+	}
 	
 	public Integer getId() {
 		return id;
