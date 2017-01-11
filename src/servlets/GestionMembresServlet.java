@@ -57,20 +57,12 @@ public class GestionMembresServlet extends HttpServlet
 			String password = request.getParameter("password");
 			System.out.println("connexion de " + pseudo + " "+ password);
 				
-			Membre mb =fcdUsers.checkMembre(pseudo, password);
+			Membre mb = fcdUsers.checkMembre(pseudo, password);
 			if(mb != null)
 			{
-				request.setAttribute("echecCo", "success");
-				
 				HttpSession session = request.getSession();
-				
-				session.setAttribute("nom", mb.getNom());
-				session.setAttribute("prenom", mb.getPrenoms());
-				session.setAttribute("pseudo", mb.getPseudo());
-				
-				/*request.setAttribute("nom", mb.getNom());
-				request.setAttribute("prenom", mb.getPrenoms());
-				request.setAttribute("pseudo", mb.getPseudo());*/
+				session.setAttribute("membre", mb);
+
 				request.getRequestDispatcher("index.jsp").forward(request, response);
 			}
 			else

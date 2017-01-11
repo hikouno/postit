@@ -25,7 +25,6 @@ public class FacadeUtilisateurs
 		this.listeMembres = listeMembres;
 	}
 	
-	
 	private Integer generateIdMembre()
 	{
 		return this.nbUsers+1;

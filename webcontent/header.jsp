@@ -15,10 +15,10 @@
 					
 					<% if (connected) { %>
 					<div class="wrapper">
-					<p>Bienvenue Mr <%=nomMembre%> <%=prenomsMembre%></p>
+					<p>Bienvenue Mr <%=membre.getNom()%> <%=membre.getPrenoms()%></p>
 						<nav>
 							<ul id="top_nav">
-								<li><a href="monCompte.html"><%=pseudoMembre%> </a></li>
+								<li><a href="monCompte.html"><%=membre.getPseudo()%> </a></li>
 								<li><a onclick="logout()">log-out</a></li>
 								<li><a href="#">Help</a></li>
 							</ul>
@@ -28,8 +28,8 @@
 					<div class="wrapper">
 						<nav>
 							<ul id="top_nav">
-								<li><a href="#">Register</a></li>
-								<li><a href="#">Log In</a></li>
+								<li><a href="Inscription.html">Register</a></li>
+								<li><a href="Login.html">Log In</a></li>
 								<li><a href="#">Help</a></li>
 							</ul>
 						</nav>

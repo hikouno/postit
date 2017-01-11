@@ -9,18 +9,6 @@ Contenu contenu = postit.getContenu();
 PointGeo geo = postit.getPointGeo();
 List<Commentaire> commentaires = postit.getCommentaires();
 Date dateCreation = postit.getDateCreation();
-
-
-//Session
-Boolean connected = false;
-HttpSession sess = request.getSession();
-String pseudoMembre = "", prenomsMembre = "", nomMembre = "";
-if (sess.getAttribute("pseudo") != null) {
-	connected = true;
-	pseudoMembre = (String) sess.getAttribute("pseudo");
-	prenomsMembre = (String)sess.getAttribute("prenom");
-	nomMembre = (String)sess.getAttribute("nom");
-}
 %>
 
 <!DOCTYPE html>
@@ -38,6 +26,8 @@ if (sess.getAttribute("pseudo") != null) {
 <script type="text/javascript" src="js/swap.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAIZrHcZmqc80RMhdvsOrwBR6Z-2xwP5s&callback=initMap"></script>
 <script type="text/javascript" src="js/initCarte.js"></script>
+<script type="text/javascript" src="js/utilitaires.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <!--[if lt IE 9]>
 	<script type="text/javascript" src="http://info.template-help.com/files/ie6_warning/ie6_script_other.js"></script>
@@ -50,7 +40,7 @@ if (sess.getAttribute("pseudo") != null) {
 	<div class="main">
 <!-- header -->
 		<header>
-			<jsp:include page="header.jsp" />
+			<%@include file="header.jsp"%>
 		</header>
 <!-- / header -->
 <!-- content -->
@@ -88,8 +78,12 @@ if (sess.getAttribute("pseudo") != null) {
 					</div>
 					
 					<div class="note_postit"><img alt="Étoile" src="images/star-icon.png" /><div><%=postit.getNote()%></div></div>
-					<div class="like_dislike"><img alt="Aimer" src="images/liked-icon.png"  />
-					<img alt="Désaimer" src="images/dislike-icon.png" class="dislike" /></div>
+					<div class="like_dislike">
+					<% if (!connected) { %>
+					<img alt="Aimer" src="images/liked-icon.png"  />
+					<img alt="Désaimer" src="images/dislike-icon.png" class="dislike" />
+					<% } %>
+					</div>
 					
 					<div class="infos_apropos_postit">
 					
