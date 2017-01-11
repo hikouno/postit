@@ -3,17 +3,19 @@ import java.util.Date;
 import utilisateur.Utilisateur;
 import postit.Contenu;
 
-/** Amélioration possible : ne pas recalculer la note à chaque fois*/
+/** Un commentaire. */
 public class Commentaire extends Notable
 {
 	private Utilisateur auteur;
 	private Contenu contenu;
 	private Date dateCreation;
+	private PostIt postItAssocie;
 	
-	public Commentaire(Utilisateur auteur, Contenu contenu) {
+	public Commentaire(Utilisateur auteur, Contenu contenu, PostIt postit) {
 		super();
 		this.auteur = auteur;
 		this.contenu = contenu;
+		this.postItAssocie = postit;
 		this.dateCreation = new Date();
 	}
 	
@@ -27,5 +29,9 @@ public class Commentaire extends Notable
 	
 	public Date getDateCreation() {
 		return this.dateCreation;
+	}
+	
+	public PostIt getPostIt() {
+		return this.postItAssocie;
 	}
 }

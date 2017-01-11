@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 import utilisateur.Membre;
 
-/** Amélioration possible : ne pas recalculer la note à chaque fois*/
+/** Amélioration possible : ne pas recalculer la note à chaque fois. */
 public abstract class Notable
 {
 	public enum Vote { PLUS_1, MOINS_1 };
