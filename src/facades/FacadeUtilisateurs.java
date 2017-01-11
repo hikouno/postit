@@ -1,4 +1,4 @@
-package façades;
+package facades;
 
 import java.util.HashMap;
 
