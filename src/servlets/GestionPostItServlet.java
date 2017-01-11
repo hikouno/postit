@@ -100,6 +100,38 @@ public class GestionPostItServlet extends HttpServlet {
 				request.getRequestDispatcher("index.jsp").forward(request, response);
 			}
 		}
+		else if(operation.equals("noterComm")) {
+			if (membre != null) {
+				
+				Integer commIx = Integer.parseInt(request.getParameter("comm"));
+				
+				String rawVote = (String) request.getParameter("vote");
+				Notable.Vote vote = (rawVote.equals("-1") ? Notable.Vote.MOINS_1 : Notable.Vote.PLUS_1);
+				
+				fcdPostIt.noterCommentaire(postItId, commIx, membre, vote);
+				
+				request.getRequestDispatcher("GestionPostItServlet?op=afPostIt&postit="+postItId).forward(request, response);
+				
+			} else {
+				
+				//Afficher un message d'erreur à l'utilisateur est possible
+				request.getRequestDispatcher("index.jsp").forward(request, response);
+			}
+		}
+		else if(operation.equals("denoterComm")) {
+			if (membre != null) {
+				
+				Integer commIx = Integer.parseInt(request.getParameter("comm"));
+				
+				fcdPostIt.denoterCommentaire(postItId, commIx, membre);
+				request.getRequestDispatcher("GestionPostItServlet?op=afPostIt&postit="+postItId).forward(request, response);
+				
+			} else {
+				
+				//Afficher un message d'erreur à l'utilisateur est possible
+				request.getRequestDispatcher("index.jsp").forward(request, response);
+			}
+		}
 		else if(operation.equals("ajPostIt"))
 		{
 			

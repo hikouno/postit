@@ -52,6 +52,8 @@ public class FacadePostIt
 		this.postits.put(new Integer(this.currentId++), postit);
 	}
 	
+	/// OPERATIONS DE NOTAGE
+	// Post-it
 	public void noterPostIt(Integer id, Membre membre, Notable.Vote vote) {
 		PostIt postit = null;
 		if ((postit = getPostItById(id)) != null) {
@@ -64,6 +66,27 @@ public class FacadePostIt
 		PostIt postit = null;
 		if ((postit = getPostItById(id)) != null) {
 			postit.annulerVote(membre);
+		}
+	}
+	
+	//Commentaire
+	public void noterCommentaire(Integer id, int commentIx, Membre membre, Notable.Vote vote) {
+		PostIt postit = null;
+		if ((postit = getPostItById(id)) != null) {
+			if (postit.getCommentaires().size() > commentIx) {
+				postit.getCommentaires().get(commentIx).noter(membre, vote);
+				System.out.println("On note le commentaire " + commentIx + " de " + postit + " avec " + membre);
+			}
+		}
+	}
+	
+	public void denoterCommentaire(Integer id, int commentIx, Membre membre) {
+		PostIt postit = null;
+		if ((postit = getPostItById(id)) != null) {
+			if (postit.getCommentaires().size() > commentIx) {
+				postit.getCommentaires().get(commentIx).annulerVote(membre);
+				System.out.println("On denote le commentaire " + commentIx + " de " + postit + " avec " + membre);
+			}
 		}
 	}
 	

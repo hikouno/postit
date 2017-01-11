@@ -80,7 +80,8 @@ Integer postit_id = postit.getId();
 					</div>
 					
 					<div class="note_postit"><img alt="Étoile" src="images/star-icon.png" /><div><%=postit.getNote()%></div></div>
-					<div class="like_dislike">
+					<div>
+					<!-- Note du post-it. -->
 					<% if (connected) {
 						System.out.println("membre co :" + membre);
 						postit.getNote();
@@ -146,9 +147,32 @@ Integer postit_id = postit.getId();
 						
 						<div class="noter_supprimer_commentaire">
 							<div><img alt="supprimer" title="supprimer" src="images/delete-icon.png" /></div>
+							
+							<!-- Note d'un commentaire. -->
+							<% if (connected) {
+								if (!c.aVote(membre)) { %>
+							
+								<a class="like small" href="GestionPostItServlet?op=noterComm&vote=1&postit=<%=postit_id%>&comm=<%=i%>"></a>
+								<a class="dislike small" href="GestionPostItServlet?op=noterComm&vote=-1&postit=<%=postit_id%>&comm=<%=i%>"></a>
+								
+							<%  } else {
+									Notable.Vote vote = c.getNoteDUnMembre(membre);
+									if (vote == Notable.Vote.PLUS_1) {
+										%>
+										<a class="liked small" href="GestionPostItServlet?op=denoterComm&postit=<%=postit_id%>&comm=<%=i%>"></a>
+										<a class="dislike small" href="GestionPostItServlet?op=noterComm&vote=-1&postit=<%=postit_id%>&comm=<%=i%>"></a>
+										<%
+									} else {
+										%>
+										<a class="like small" href="GestionPostItServlet?op=noterComm&vote=1&postit=<%=postit_id%>&comm=<%=i%>"></a>
+										<a class="disliked small" href="GestionPostItServlet?op=denoterComm&postit=<%=postit_id%>&comm=<%=i%>"></a>
+										<%
+									}
+								}
+						   	}
+						%>
+							
 							<div class="note_comment"><img alt="Étoile" src="images/star-icon.png" /><div><%=c.getNote()%></div></div>
-							<div class="like_dislike_comment"><img alt="Aimer" src="images/liked-icon.png"  />
-							<img alt="Désaimer" src="images/dislike-icon.png" class="dislike" /></div>
 						</div>
 						
 						<div class="contenu_commentaire">

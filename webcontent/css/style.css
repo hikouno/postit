@@ -158,6 +158,21 @@ footer a {color:#439deb}
 	float:left;
 }
 
+.like.small, .liked.small, .disliked.small, .dislike.small,
+.like.small:hover, .liked.small:hover, .disliked.small:hover, .dislike.small:hover
+{
+	width:20px;
+	height:20px;
+	background-size:20px 20px;
+	margin:0px;
+}
+
+.dislike.small, .dislike.small:hover, .disliked.small, .disliked.small:hover
+{
+	position:relative;
+	top:5px;
+}
+
 .like, .liked:hover
 {
 	display:inline-block;
