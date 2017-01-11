@@ -1,4 +1,4 @@
-<%@ page import="postit.*, java.util.*" language="java" contentType="text/html; charset=UTF-8"
+<%@ page import="postit.*, utilisateur.*, java.util.*" language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,7 +30,7 @@ Utilisateur auteur = postit.getAuteur();
 String titre = postit.getTitre();
 Contenu contenu = postit.getContenu();
 PointGeo geo = postit.getPointGeo();
-List<Commentaires> commentaires = postit.getCommentaires();
+List<Commentaire> commentaires = postit.getCommentaires();
 Date dateCreation = postit.dateCreation();
 
 %>
@@ -139,45 +139,34 @@ Date dateCreation = postit.dateCreation();
 					
 					<h3>Commentaires</h3>
 					
-					<div class="un_commentaire under">
+					<%
+						for (int i = 0; i < commentaires.size(); i++) {
+							Commentaire c = commentaires[i];
+							Utilisateur c_auteur = c.getAuteur();
+							Contenu c_contenu = c.getContenu();
+					%>
+					
+					<div class="un_commentaire<%if (i != commentaires.size() - 1) { %> under<%}%>">
 						<div class="infos_auteur_commentaire">
-							<div class="pseudo_auteur_commentaire">Pseudo</div>
-							<img src="images/page4_img1.jpg" alt=""></figure>
+							<div class="pseudo_auteur_commentaire"><%=c_auteur.getPseudo()%></div>
+							<% if (c_auteur instanceof Membre) { %><img src="<%=((Membre) c_auteur).getAvatarPath()%>" alt="" /><% } %>
 						</div>
 						
 						<div class="noter_supprimer_commentaire">
 							<div><img alt="supprimer" title="supprimer" src="images/delete-icon.png" /></div>
-							<div class="note_comment"><img alt="Étoile" src="images/star-icon.png" /><div>48.2</div></div>
+							<div class="note_comment"><img alt="Étoile" src="images/star-icon.png" /><div><%=c.getNote()%></div></div>
 							<div class="like_dislike_comment"><img alt="Aimer" src="images/liked-icon.png"  />
 							<img alt="Désaimer" src="images/dislike-icon.png" class="dislike" /></div>
 						</div>
 						
 						<div class="contenu_commentaire">
-							HZERZHUFEZPPFHZUFZUE	hezfiuzfhzupe<br />
-							zhzohrzoehrzuedha auzau aa zazae aa<br/><br />
-							
-							zeoirzrohz <strong>jzhiq</strong> zrez !
+							<%=c_contenu.toHtml()%>
 						</div>
 					</div>
 					
-					<div class="un_commentaire">
-						<div class="infos_auteur_commentaire">
-							<div class="pseudo_auteur_commentaire">Pseudo</div>
-							<img src="images/page4_img1.jpg" alt=""></figure>
-						</div>
-						
-						<div class="noter_supprimer_commentaire">
-							<div class="note_comment"><img alt="Étoile" src="images/star-icon.png" /><div>48.2</div></div>
-							<div class="like_dislike_comment"><img alt="Aimer" src="images/liked-icon.png"  />
-							<img alt="Désaimer" src="images/dislike-icon.png" class="dislike" /></div>
-						</div>
-						
-						<div class="contenu_commentaire">
-							ozenrfueziryvbzeoirbzyroibzye eg :/<br /><br />
-							
-							<iframe width="280" height="158" src="https://www.youtube.com/embed/arh3olQDxvw" frameborder="0" allowfullscreen></iframe>
-						</div>
-					</div>
+					<%
+					}
+					%>
 				
         	</article>
 		</section>
