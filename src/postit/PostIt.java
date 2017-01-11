@@ -18,8 +18,9 @@ public class PostIt extends Notable
 	private Date dateCreation;
 	private PointGeo pointGeo;
 	private List<Commentaire> commentaires;
+	private Integer id;
 	
-	public PostIt(Utilisateur auteur, String titre, Contenu contenu, PointGeo pointGeo) {
+	public PostIt(Utilisateur auteur, String titre, Contenu contenu, PointGeo pointGeo, Integer id) {
 		super();
 		this.auteur = auteur;
 		this.titre = titre;
@@ -27,6 +28,7 @@ public class PostIt extends Notable
 		this.dateCreation = new Date();
 		this.pointGeo = pointGeo;
 		this.commentaires = new ArrayList<Commentaire>();
+		this.id = id;
 	}
 	
 	public void ajouterCommentaire(Commentaire commentaire) {
@@ -55,5 +57,9 @@ public class PostIt extends Notable
 	
 	public PointGeo getPointGeo() {
 		return this.pointGeo;
+	}
+	
+	public Integer getId() {
+		return this.id;
 	}
 }

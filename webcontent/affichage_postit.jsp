@@ -9,6 +9,8 @@ Contenu contenu = postit.getContenu();
 PointGeo geo = postit.getPointGeo();
 List<Commentaire> commentaires = postit.getCommentaires();
 Date dateCreation = postit.getDateCreation();
+
+Integer postit_id = postit.getId();
 %>
 
 <!DOCTYPE html>
@@ -80,22 +82,24 @@ Date dateCreation = postit.getDateCreation();
 					<div class="note_postit"><img alt="Étoile" src="images/star-icon.png" /><div><%=postit.getNote()%></div></div>
 					<div class="like_dislike">
 					<% if (connected) {
+						System.out.println("membre co :" + membre);
+						postit.getNote();
 						if (!postit.aVote(membre)) { %>
 					
-						<a class="like" href=""></a>
-						<a class="dislike" href=""></a>
+						<a class="like" href="GestionPostItServlet?op=noterPostIt&vote=1&postit=<%=postit_id%>"></a>
+						<a class="dislike" href="GestionPostItServlet?op=noterPostIt&vote=-1&postit=<%=postit_id%>"></a>
 						
 					<%  } else {
 							Notable.Vote vote = postit.getNoteDUnMembre(membre);
 							if (vote == Notable.Vote.PLUS_1) {
 								%>
-								<a class="liked" href=""></a>
-								<a class="dislike" href=""></a>
+								<a class="liked" href="GestionPostItServlet?op=denoterPostIt&postit=<%=postit_id%>"></a>
+								<a class="dislike" href="GestionPostItServlet?op=noterPostIt&vote=-1&postit=<%=postit_id%>"></a>
 								<%
 							} else {
 								%>
-								<a class="like" href=""></a>
-								<a class="disliked" href=""></a>
+								<a class="like" href="GestionPostItServlet?op=noterPostIt&vote=1&postit=<%=postit_id%>"></a>
+								<a class="disliked" href="GestionPostItServlet?op=denoterPostIt&postit=<%=postit_id%>"></a>
 								<%
 							}
 						}

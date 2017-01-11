@@ -7,6 +7,7 @@ import javax.ejb.Singleton;
 import multimedia.Image;
 import multimedia.Texte;
 import multimedia.Video;
+import notable.Notable;
 import notable.Notable.Vote;
 import postit.*;
 import utilisateur.Invite;
@@ -23,6 +24,7 @@ public class FacadePostIt
 		this.currentId = 0;
 		
 		//Pour tester j'ajoute le post-it "1" :)
+		final Integer ID = 1;
 		Membre m1 = new Membre("darktosteur");
 		m1.setAvatarPath("https://avatars1.githubusercontent.com/u/8598621?v=3&u=0eab29e9e712d19b60152d2e0f6393c5ff81066f&s=400");
 		m1.noter(m1, Vote.PLUS_1);
@@ -40,14 +42,29 @@ public class FacadePostIt
 		
 		Contenu com2 = new Contenu();
 		com2.addElement(new Image("http://www.webinette.fr/img/logo.jpg"));
-		PostIt p = new PostIt(m1, "Mon premier post-it", cont, new PointGeo(0.2, 0.7));
+		PostIt p = new PostIt(m1, "Mon premier post-it", cont, new PointGeo(0.2, 0.7), ID);
 		p.ajouterCommentaire(comm1);
 		p.ajouterCommentaire(new Commentaire(new Invite("hikouno"), com2));
-		postits.put(1, p);
+		postits.put(ID, p);
 	}
 	
 	public void ajouterPostIt(PostIt postit) {
 		this.postits.put(new Integer(this.currentId++), postit);
+	}
+	
+	public void noterPostIt(Integer id, Membre membre, Notable.Vote vote) {
+		PostIt postit = null;
+		if ((postit = getPostItById(id)) != null) {
+			postit.noter(membre, vote);
+			System.out.println("On note " + postit + " avec " + membre);
+		}
+	}
+	
+	public void denoterPostIt(Integer id, Membre membre) {
+		PostIt postit = null;
+		if ((postit = getPostItById(id)) != null) {
+			postit.annulerVote(membre);
+		}
 	}
 	
 	public PostIt getPostItById(Integer id) {

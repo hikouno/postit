@@ -22,7 +22,7 @@ public abstract class Notable
 		this.votes.put(membre, vote);
 	}
 	
-	public void annulerNote(Membre membre) {
+	public void annulerVote(Membre membre) {
 		this.votes.remove(membre);
 	}
 	
@@ -37,7 +37,7 @@ public abstract class Notable
 	public HashMap<Membre, Vote> getNoteurs() {
 		return this.votes;
 	}
-	
+
 	public int getNote() {
 		int note = 0;
 		
@@ -45,14 +45,13 @@ public abstract class Notable
 		Iterator it = this.votes.entrySet().iterator();
 		while (it.hasNext()) {
 			Map.Entry pair = (Map.Entry) it.next();
-			
+			System.out.println((Membre)pair.getKey() + " a voté");
 			Vote vote = (Vote) pair.getValue();
 			if (vote == Vote.PLUS_1) {
 				note++;
 			} else {
 				note --;
 			}
-			it.remove();
 		}
 		
 		return note;
