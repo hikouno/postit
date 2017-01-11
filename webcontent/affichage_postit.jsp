@@ -31,7 +31,7 @@ String titre = postit.getTitre();
 Contenu contenu = postit.getContenu();
 PointGeo geo = postit.getPointGeo();
 List<Commentaire> commentaires = postit.getCommentaires();
-Date dateCreation = postit.dateCreation();
+Date dateCreation = postit.getDateCreation();
 
 %>
 

@@ -3,6 +3,8 @@ import java.util.Date;
 import utilisateur.Utilisateur;
 import postit.Contenu;
 
+import Notable;
+
 /** Un commentaire. */
 public class Commentaire extends Notable
 {

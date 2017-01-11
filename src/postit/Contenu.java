@@ -19,7 +19,7 @@ public class Contenu
 		return this.contenu;
 	}
 	
-	public String toHTML() {
+	public String toHtml() {
 		String html = "<div>";
 		for(EltMultimedia e : contenu){
 			html+=e.toHtml();
