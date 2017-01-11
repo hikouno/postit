@@ -10,6 +10,17 @@ PointGeo geo = postit.getPointGeo();
 List<Commentaire> commentaires = postit.getCommentaires();
 Date dateCreation = postit.getDateCreation();
 
+
+//Session
+Boolean connected = false;
+HttpSession sess = request.getSession();
+String pseudoMembre = "", prenomsMembre = "", nomMembre = "";
+if (sess.getAttribute("pseudo") != null) {
+	connected = true;
+	pseudoMembre = (String) sess.getAttribute("pseudo");
+	prenomsMembre = (String)sess.getAttribute("prenom");
+	nomMembre = (String)sess.getAttribute("nom");
+}
 %>
 
 <!DOCTYPE html>
@@ -39,41 +50,7 @@ Date dateCreation = postit.getDateCreation();
 	<div class="main">
 <!-- header -->
 		<header>
-			<div class="wrapper">
-				<h1><a href="index.html" id="logo">Around the World</a></h1>
-				<div class="right">
-					<div class="wrapper">
-						<form id="search" action="" method="post">
-							<div class="bg">
-								<input type="submit" class="submit" value="">
-								<input type="text" class="input">
-							</div>
-						</form>
-					</div>
-					<div class="wrapper">
-						<nav>
-							<ul id="top_nav">
-								<li><a href="#">Register</a></li>
-								<li><a href="#">Log In</a></li>
-								<li><a href="#">Help</a></li>
-							</ul>
-						</nav>
-					</div>	
-				</div>
-			</div>
-			<nav>
-				<ul id="menu">
-					<li><a href="index.html" class="nav1">Accueil</a></li>
-					<li><a href="About.html" class="nav2">Ajout post-it </a></li>
-					<li><a href="Tours.html" class="nav3">Mon compte</a></li>
-					<li class="end"><a href="Contacts.html" class="nav5">Nous contacter</a></li>
-				</ul>
-			</nav>
-			<article class="col_s">
-				<div class="defil">
-					 <img id="img" src="images/page1_img1.jpg"/>
-				</div>
-			</article>
+			<jsp:include page="header.jsp" />
 		</header>
 <!-- / header -->
 <!-- content -->
