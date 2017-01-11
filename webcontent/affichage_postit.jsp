@@ -1,4 +1,4 @@
-<%@ page import="postit.*, utilisateur.*, java.util.*" language="java" contentType="text/html; charset=UTF-8"
+<%@ page import="postit.*, utilisateur.*, notable.*, java.util.*" language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 
@@ -79,10 +79,28 @@ Date dateCreation = postit.getDateCreation();
 					
 					<div class="note_postit"><img alt="Étoile" src="images/star-icon.png" /><div><%=postit.getNote()%></div></div>
 					<div class="like_dislike">
-					<% if (!connected) { %>
-					<img alt="Aimer" src="images/liked-icon.png"  />
-					<img alt="Désaimer" src="images/dislike-icon.png" class="dislike" />
-					<% } %>
+					<% if (connected) {
+						if (!postit.aVote(membre)) { %>
+					
+						<a class="like" href=""></a>
+						<a class="dislike" href=""></a>
+						
+					<%  } else {
+							Notable.Vote vote = postit.getNoteDUnMembre(membre);
+							if (vote == Notable.Vote.PLUS_1) {
+								%>
+								<a class="liked" href=""></a>
+								<a class="dislike" href=""></a>
+								<%
+							} else {
+								%>
+								<a class="like" href=""></a>
+								<a class="disliked" href=""></a>
+								<%
+							}
+						}
+					   }
+					%>
 					</div>
 					
 					<div class="infos_apropos_postit">

@@ -26,6 +26,14 @@ public abstract class Notable
 		this.votes.remove(membre);
 	}
 	
+	public boolean aVote(Membre membre) {
+		return this.votes.containsKey(membre);
+	}
+	
+	public Vote getNoteDUnMembre(Membre membre) {
+		return this.votes.get(membre);
+	}
+	
 	public HashMap<Membre, Vote> getNoteurs() {
 		return this.votes;
 	}

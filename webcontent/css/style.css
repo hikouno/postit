@@ -158,16 +158,48 @@ footer a {color:#439deb}
 	float:left;
 }
 
-.like_dislike img
+.like, .liked:hover
 {
+	display:inline-block;
 	width:50px;
+	height:50px;
 	margin:10px;
+	background:transparent url('../images/like-icon.png') center top no-repeat;
+	background-size: 50px 50px;
 }
 
-.like_dislike .dislike
+.liked, .like:hover
 {
+	display:inline-block;
+	width:50px;
+	height:50px;
+	margin:10px;
+	background:transparent url('../images/liked-icon.png') center top no-repeat;
+	background-size: 50px 50px;
+}
+
+.dislike, .disliked:hover
+{
+	display:inline-block;
+	width:50px;
+	height:50px;
+	margin:10px;
+	background:transparent url('../images/dislike-icon.png') center top no-repeat;
 	position:relative;
 	top:14px;
+	background-size: 50px 50px;
+}
+
+.disliked, .dislike:hover
+{
+	display:inline-block;
+	width:50px;
+	height:50px;
+	margin:10px;
+	background:transparent url('/images/disliked-icon.png') center top no-repeat;
+	position:relative;
+	top:14px;
+	background-size: 50px 50px;
 }
 
 .infos_apropos_postit
