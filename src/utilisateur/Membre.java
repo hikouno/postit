@@ -6,8 +6,9 @@ public class Membre extends Notable implements Utilisateur
 	private String nom, prenoms;
 	private String pseudo, password;
 	
-	public Membre() {
+	public Membre(String pseudo) {
 		super();
+		this.pseudo = pseudo;
 	}
 	
 	public void setPseudo(String pseudo) {
