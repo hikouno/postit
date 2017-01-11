@@ -1,9 +1,21 @@
 <%@ page import="postit.*, utilisateur.*, java.util.*" language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+
+PostIt postit = (PostIt) request.getAttribute("postit");
+Utilisateur auteur = postit.getAuteur();
+String titre = postit.getTitre();
+Contenu contenu = postit.getContenu();
+PointGeo geo = postit.getPointGeo();
+List<Commentaire> commentaires = postit.getCommentaires();
+Date dateCreation = postit.getDateCreation();
+
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Post-it de jean-jacques</title>
+<title>Post-it de <%=auteur.getPseudo()%></title>
 <meta charset="utf-8">
 <link rel="stylesheet" href="css/reset.css" type="text/css" media="all">
 <link rel="stylesheet" href="css/layout.css" type="text/css" media="all">
@@ -22,19 +34,6 @@
 <![endif]-->
 </head>
 <body onload="initMap(); startTimer();">
-
-<%
-
-PostIt postit = (PostIt) request.getAttribute("echecCo");
-Utilisateur auteur = postit.getAuteur();
-String titre = postit.getTitre();
-Contenu contenu = postit.getContenu();
-PointGeo geo = postit.getPointGeo();
-List<Commentaire> commentaires = postit.getCommentaires();
-Date dateCreation = postit.getDateCreation();
-
-%>
-
 
 <div class="extra">
 	<div class="main">
@@ -82,7 +81,7 @@ Date dateCreation = postit.getDateCreation();
 			<article class="col1">
 				<h3>Hot Point</h3>
 				<div class="pad">
-					<div class="wrapper under">
+					<div cl 1ass="wrapper under">
 						<figure class="left marg_right1"><img src="images/page1_img1.jpg" alt=""></figure>
 						<p class="pad_bot2"><strong>Italy<br>Holidays</strong></p>
 						<p class="pad_bot2">Lorem ipsum dolor sit amet, consect etuer adipiscing.</p>
@@ -103,7 +102,7 @@ Date dateCreation = postit.getDateCreation();
 				</div>
         	</article>
 		<article class="col2 pad_left1">
-				<h2>Post-it de jean-jacques</h2>
+				<h2>Post-it de <%=auteur.getPseudo()%></h2>
 				
 					<h3>Post-it</h3>
 					<div class="conteneur_postit">
@@ -123,7 +122,7 @@ Date dateCreation = postit.getDateCreation();
 									Membre auteurMembre = (Membre) auteur;
 							%>
 								<div class="wrapper desc_profil_postant">
-									<figure class="left marg_right1"><img src="<%=auteurMembre.getAvatarPath()%>" alt=""></figure>
+									<figure class="left marg_right1"><img class="avatar" src="<%=auteurMembre.getAvatarPath()%>" alt=""></figure>
 									
 									<p class="pad_bot2">Note : <%=auteurMembre.getNote()%></p>
 									
@@ -149,7 +148,7 @@ Date dateCreation = postit.getDateCreation();
 					<div class="un_commentaire<%if (i != commentaires.size() - 1) { %> under<%}%>">
 						<div class="infos_auteur_commentaire">
 							<div class="pseudo_auteur_commentaire"><%=c_auteur.getPseudo()%></div>
-							<% if (c_auteur instanceof Membre) { %><img src="<%=((Membre) c_auteur).getAvatarPath()%>" alt="" /><% } %>
+							<% if (c_auteur instanceof Membre) { %><img class="avatar_comm" src="<%=((Membre) c_auteur).getAvatarPath()%>" alt="" /><% } %>
 						</div>
 						
 						<div class="noter_supprimer_commentaire">

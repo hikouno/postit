@@ -10,6 +10,6 @@ public class Image implements EltMultimedia
 	}
 	
 	public String toHtml() {
-		return "<img src=\""+this.chemin+"\" alt=\"image utilisateur\" />";
+		return "<img src=\""+this.chemin+"\" alt=\"image utilisateur\" style=\"max-width:400px;\" />";
 	}
 }

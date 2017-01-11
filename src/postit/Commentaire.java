@@ -13,13 +13,11 @@ public class Commentaire extends Notable
 	private Utilisateur auteur;
 	private Contenu contenu;
 	private Date dateCreation;
-	private PostIt postItAssocie;
 	
-	public Commentaire(Utilisateur auteur, Contenu contenu, PostIt postit) {
+	public Commentaire(Utilisateur auteur, Contenu contenu) {
 		super();
 		this.auteur = auteur;
 		this.contenu = contenu;
-		this.postItAssocie = postit;
 		this.dateCreation = new Date();
 	}
 	
@@ -33,9 +31,5 @@ public class Commentaire extends Notable
 	
 	public Date getDateCreation() {
 		return this.dateCreation;
-	}
-	
-	public PostIt getPostIt() {
-		return this.postItAssocie;
 	}
 }

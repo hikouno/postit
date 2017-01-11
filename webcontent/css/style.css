@@ -216,3 +216,13 @@ footer a {color:#439deb}
 	margin-left:2px;
 	margin-right:2px;
 }
+
+.avatar
+{
+	max-width:150px;
+}
+
+.avatar_comm
+{
+	max-width:100px;
+}

@@ -52,7 +52,14 @@ public class GestionPostItServlet extends HttpServlet {
 		else if(operation.equals("afPostIt"))
 		{
 			Integer postItId = Integer.parseInt(request.getParameter("postit"));
+			
+			
+			
 			PostIt postItAAfficher = fcdPostIt.getPostItById(postItId);
+			
+			System.out.println("Je vais afficher le post-it " + postItId + " : " + postItAAfficher);
+			
+			
 			if (postItAAfficher != null) {
 				
 				request.setAttribute("postit", postItAAfficher);
