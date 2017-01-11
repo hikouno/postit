@@ -20,7 +20,7 @@ public class PostIt extends Notable
 		this.contenu = contenu;
 		this.dateCreation = new Date();
 		this.pointGeo = pointGeo;
-		this.commentaires = new ArrayList<String>();
+		this.commentaires = new ArrayList<Commentaire>();
 	}
 	
 	public void ajouterCommentaire(Commentaire commentaire) {
