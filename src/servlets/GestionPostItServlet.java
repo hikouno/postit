@@ -7,12 +7,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import facades.FacadePostIt;
+import postit.*;
+
 /**
  * Servlet implementation class GestionPostItServlet
  */
 @WebServlet("/GestionPostItServlet")
 public class GestionPostItServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	@EJB
+	private FacadePostIt fcdPostIt;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -44,6 +49,17 @@ public class GestionPostItServlet extends HttpServlet {
 		}
 		else if(operation.equals("afPostIt"))
 		{
+			Integer postItId = Integer.parseInt(request.getParameter("postit"));
+			PostIt postItAAfficher = fcdPostIt.getPostItById(postItId);
+			if (postItAAficher != null) {
+				
+				request.setAttribute("postit", postItAAfficher);
+				request.getRequestDispatcher("affichage_postit.jsp").forward(request, response);
+				
+			} else {
+				//Afficher un message d'erreur à l'utilisateur est possible
+				request.getRequestDispatcher("index.html").forward(request, response);
+			}
 			
 		}
 		else if(operation.equals("ajPostIt"))
@@ -54,7 +70,6 @@ public class GestionPostItServlet extends HttpServlet {
 		{
 			
 		}
-		
 		
 	}
 

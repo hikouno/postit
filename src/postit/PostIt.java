@@ -8,15 +8,16 @@ import utilisateur.Utilisateur;
 public class PostIt extends Notable
 {
 	private Utilisateur auteur;
+	private String titre;
 	private Contenu contenu;
 	private Date dateCreation;
 	private PointGeo pointGeo;
 	private List<Commentaire> commentaires;
 	
-	
-	public PostIt(Utilisateur auteur, Contenu contenu, PointGeo pointGeo) {
+	public PostIt(Utilisateur auteur, String titre, Contenu contenu, PointGeo pointGeo) {
 		super();
 		this.auteur = auteur;
+		this.titre = titre;
 		this.contenu = contenu;
 		this.dateCreation = new Date();
 		this.pointGeo = pointGeo;
@@ -29,6 +30,10 @@ public class PostIt extends Notable
 	
 	public List<Commentaire> getCommentaires() {
 		return this.commentaires;
+	}
+	
+	public String getTitre() {
+		return this.titre;
 	}
 	
 	public Utilisateur getAuteur() {

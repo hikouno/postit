@@ -1,3 +1,5 @@
+<%@ page import="postit.*, java.util.*" language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,6 +22,20 @@
 <![endif]-->
 </head>
 <body onload="initMap(); startTimer();">
+
+<%
+
+PostIt postit = (PostIt) request.getAttribute("echecCo");
+Utilisateur auteur = postit.getAuteur();
+String titre = postit.getTitre();
+Contenu contenu = postit.getContenu();
+PointGeo geo = postit.getPointGeo();
+List<Commentaires> commentaires = postit.getCommentaires();
+Date dateCreation = postit.dateCreation();
+
+%>
+
+
 <div class="extra">
 	<div class="main">
 <!-- header -->
@@ -91,23 +107,29 @@
 				
 					<h3>Post-it</h3>
 					<div class="conteneur_postit">
-						<span class="titre_postit">Titre</span>
-						<div class="contenu_postit">Contenu du post-it</div>
+						<span class="titre_postit"><%=titre%></span>
+						<div class="contenu_postit"><%=contenu.toHtml()%></div>
 					</div>
 					
-					<div class="note_postit"><img alt="Étoile" src="images/star-icon.png" /><div>48.2</div></div>
+					<div class="note_postit"><img alt="Étoile" src="images/star-icon.png" /><div><%=postit.getNote()%></div></div>
 					<div class="like_dislike"><img alt="Aimer" src="images/liked-icon.png"  />
 					<img alt="Désaimer" src="images/dislike-icon.png" class="dislike" /></div>
 					
 					<div class="infos_apropos_postit">
 					
 						<div class="profil_postant">
-							<div class="entete_profil_postant">Pseudo</div>
-							<div class="wrapper desc_profil_postant">
-								<figure class="left marg_right1"><img src="images/page4_img1.jpg" alt=""></figure>
-								<p class="pad_bot2">Note : 5</p>
-								<a href="#" class="marker_2"></a>
-							</div>
+							<div class="entete_profil_postant"><%=auteur.getPseudo()%></div>
+							<% if (auteur instanceof Membre) { 
+									Membre auteurMembre = (Membre) auteur;
+							%>
+								<div class="wrapper desc_profil_postant">
+									<figure class="left marg_right1"><img src="<%=auteurMembre.getAvatarPath()%>" alt=""></figure>
+									
+									<p class="pad_bot2">Note : <%=auteurMembre.getNote()%></p>
+									
+									<a href="#" class="marker_2"></a>
+								</div>
+							<% } %>
 						</div>
 						
 						<div id="carte" style="float: right; width: 300px;height: 245px;"></div>

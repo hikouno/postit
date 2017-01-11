@@ -5,6 +5,7 @@ public class Membre extends Notable implements Utilisateur
 	private int id;
 	private String nom, prenoms;
 	private String pseudo, password;
+	private String avatarPath;
 	
 	public Membre(String pseudo) {
 		super();
@@ -49,5 +50,13 @@ public class Membre extends Notable implements Utilisateur
 	
 	public String getPassword() {
 		return password;
+	}
+	
+	public void setAvatarPath(String avatarPath) {
+		this.avatarPath = avatarPath;
+	}
+	
+	public String getAvatarPath() {
+		return avatarPath;
 	}
 }

@@ -21,8 +21,8 @@ public class FacadePostIt
 		this.listePostIts.put(new Integer(this.currentId++), postit);
 	}
 	
-	public PostIt getPostItById(int id) {
-		return this.listePostIts.get(new Integer(id));
+	public PostIt getPostItById(Integer id) {
+		return this.listePostIts.get(id);
 	}
 	
 	public HashMap<Integer, PostIt> getPostIts() {
