@@ -141,7 +141,7 @@ Date dateCreation = postit.getDateCreation();
 					
 					<%
 						for (int i = 0; i < commentaires.size(); i++) {
-							Commentaire c = commentaires[i];
+							Commentaire c = commentaires.get(i);
 							Utilisateur c_auteur = c.getAuteur();
 							Contenu c_contenu = c.getContenu();
 					%>

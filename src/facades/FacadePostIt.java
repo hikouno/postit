@@ -13,19 +13,19 @@ public class FacadePostIt
 	private int currentId;
 	
 	public FacadePostIt() {
-		this.listePostIts = new HashMap<Integer, PostIt>();
+		this.postits = new HashMap<Integer, PostIt>();
 		this.currentId = 0;
 	}
 	
 	public void ajouterPostIt(PostIt postit) {
-		this.listePostIts.put(new Integer(this.currentId++), postit);
+		this.postits.put(new Integer(this.currentId++), postit);
 	}
 	
 	public PostIt getPostItById(Integer id) {
-		return this.listePostIts.get(id);
+		return this.postits.get(id);
 	}
 	
 	public HashMap<Integer, PostIt> getPostIts() {
-		return listePostIts;
+		return postits;
 	}
 }

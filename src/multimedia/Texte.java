@@ -6,7 +6,7 @@ public class Texte implements EltMultimedia
 	
 	public Texte(String texte) {
 		this.htmlTexte = texte;
-		StringUtils.replaceEach(htmlTexte, new String[]{"&", "\"", "<", ">"}, new String[]{"&amp;", "&quot;", "&lt;", "&gt;"});
+		//StringUtils.replaceEach(htmlTexte, new String[]{"&", "\"", "<", ">"}, new String[]{"&amp;", "&quot;", "&lt;", "&gt;"});
 		this.htmlTexte = this.htmlTexte.replaceAll("\n+", "<br />");
 		this.htmlTexte = this.htmlTexte.replaceAll("[\n\r]+", "<br />");
 	}

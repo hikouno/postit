@@ -1,6 +1,8 @@
+package notable;
+
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.HashMap;
+import java.util.Iterator;
 
 import utilisateur.Membre;
 
@@ -10,11 +12,9 @@ public abstract class Notable
 	public enum Vote { PLUS_1, MOINS_1 };
 	
 	private HashMap<Membre, Vote> votes;
-	//private int note;
 	
 	public Notable() {
 		this.votes = new HashMap<Membre, Vote>();
-		this.note = 0;
 	}
 	
 	/** Noter ou changer note */

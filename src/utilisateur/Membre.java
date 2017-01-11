@@ -1,5 +1,7 @@
 package utilisateur;
 
+import notable.Notable;
+
 public class Membre extends Notable implements Utilisateur
 {
 	private int id;

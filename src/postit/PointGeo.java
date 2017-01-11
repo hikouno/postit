@@ -4,9 +4,9 @@ public class PointGeo
 {
 	private double latitude, longitude;
 	
-	public PointGeo(double lat, double long) {
+	public PointGeo(double lat, double longitude) {
 		this.latitude = lat;
-		this.longitude = long;
+		this.longitude = longitude;
 	}
 	
 	public double getLatitude() {

@@ -3,6 +3,8 @@ package postit;
 import java.util.List;
 import java.util.ArrayList;
 
+import multimedia.EltMultimedia;
+
 public class Contenu
 {
 	private List<EltMultimedia> contenu;

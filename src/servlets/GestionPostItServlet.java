@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import javax.ejb.EJB;
+
 import facades.FacadePostIt;
 import postit.*;
 
@@ -51,7 +53,7 @@ public class GestionPostItServlet extends HttpServlet {
 		{
 			Integer postItId = Integer.parseInt(request.getParameter("postit"));
 			PostIt postItAAfficher = fcdPostIt.getPostItById(postItId);
-			if (postItAAficher != null) {
+			if (postItAAfficher != null) {
 				
 				request.setAttribute("postit", postItAAfficher);
 				request.getRequestDispatcher("affichage_postit.jsp").forward(request, response);

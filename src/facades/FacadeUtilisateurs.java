@@ -41,11 +41,10 @@ public class FacadeUtilisateurs
 	public void ajouterMembre(String nom, String prenoms, String pseudo, String password)
 	{
 		Integer id = this.generateIdMembre();
-		Membre newMb = new Membre();
+		Membre newMb = new Membre(pseudo);
 		newMb.setId(id);
 		newMb.setNom(nom);
 		newMb.setPrenoms(prenoms);
-		newMb.setPseudo(pseudo);
 		newMb.setPassword(password);;
 		this.enregistrerMembre(newMb);
 	}

@@ -1,9 +1,11 @@
+package postit;
+
 import java.util.Date;
 
 import utilisateur.Utilisateur;
 import postit.Contenu;
 
-import Notable;
+import notable.Notable;
 
 /** Un commentaire. */
 public class Commentaire extends Notable
