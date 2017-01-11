@@ -1,45 +1,52 @@
 package utilisateur;
 
-public class Membre implements Utilisateur
+public class Membre extends Notable implements Utilisateur
 {
-	protected Integer id;
-	protected String nom;
-	protected String prenoms;
-	protected String password;
-	protected String pseudo;
-
-	public String getPseudo() {
-		return pseudo;
+	private int id;
+	private String nom, prenoms;
+	private String pseudo, password;
+	
+	public Membre() {
+		super();
 	}
-
+	
 	public void setPseudo(String pseudo) {
 		this.pseudo = pseudo;
 	}
 	
-	public Integer getId() {
-		return id;
+	public String getPseudo() {
+		return pseudo;
 	}
-	public void setId(Integer id) {
+	
+	public void setId(int id) {
 		this.id = id;
 	}
-	public String getNom() {
-		return nom;
+	
+	public int getId() {
+		return id;
 	}
+	
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-	public String getPrenoms() {
-		return prenoms;
+	
+	public String getNom() {
+		return nom;
 	}
+	
 	public void setPrenoms(String prenoms) {
 		this.prenoms = prenoms;
 	}
-	public String getPassword() {
-		return password;
+	
+	public String getPrenoms() {
+		return prenoms;
 	}
+	
 	public void setPassword(String password) {
 		this.password = password;
 	}
 	
-	
+	public String getPassword() {
+		return password;
+	}
 }
