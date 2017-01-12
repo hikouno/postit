@@ -32,7 +32,7 @@
 <!-- / header -->
 <!-- content -->
 		<section id="content">
-			<a href="GestionPostItServlet?op=afPostIt&postit=1" >Voir un post-it (1)</a>
+			<a href="GestionPostItServlet?op=afPostIt&postit=-1" >Voir un post-it (1)</a>
 			<article class="col1">
 				<h3>Hot Points</h3>
 				<div class="pad">
