@@ -17,14 +17,15 @@ import utilisateur.Membre;
 public class FacadePostIt
 {
 	private HashMap<Integer, PostIt> postits;
-	private int currentId;
+	private Integer currentId;
 	
 	public FacadePostIt() {
 		this.postits = new HashMap<Integer, PostIt>();
 		this.currentId = 0;
 		
 		//Pour tester j'ajoute le post-it "1" :)
-		final Integer ID = 1;
+		final Integer ID = this.getNextID();
+		this.currentId +=1;
 		Membre m1 = new Membre("darktosteur");
 		m1.setAvatarPath("https://avatars1.githubusercontent.com/u/8598621?v=3&u=0eab29e9e712d19b60152d2e0f6393c5ff81066f&s=400");
 		m1.noter(m1, Vote.PLUS_1);
@@ -49,7 +50,8 @@ public class FacadePostIt
 	}
 	
 	public void ajouterPostIt(PostIt postit) {
-		this.postits.put(new Integer(this.currentId++), postit);
+		this.postits.put(postit.getId(), postit);
+		this.currentId +=1;
 	}
 	
 	/// OPERATIONS DE NOTAGE
@@ -96,5 +98,10 @@ public class FacadePostIt
 	
 	public HashMap<Integer, PostIt> getPostIts() {
 		return postits;
+	}
+	
+	public Integer getNextID()
+	{
+		return this.currentId +1;
 	}
 }
