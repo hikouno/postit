@@ -156,13 +156,15 @@ public class GestionPostItServlet extends HttpServlet {
 			
 			String contenu_txt = null, chemin_image = null, chemin_video = null;
 			contenu_txt = (String) request.getParameter("contenuCommentaire");
-
+			
+			String incImg = request.getParameter("inclureImage");
+			String incVid = request.getParameter("inclureVideo");
+			if (incImg != null && ((String)incImg).equals("img")) {
 				chemin_image = (String) request.getParameter("cheminImage");
-			
+			}
+			if (incVid != null && ((String)incVid).equals("vid")) {
 				chemin_video = (String) request.getParameter("cheminVideo");
-			
-				System.out.println("chemin video : " + chemin_video);
-				
+			}
 			
 			if (membre != null) {
 

@@ -138,10 +138,10 @@ Integer postit_id = postit.getId();
 							
 							<textarea style="width:99.2%;" name="contenuCommentaire" rows="7"></textarea><br />
 							
-							<!-- Inclure une image : <input type="checkbox" name="inclureImage" />-->
+							Inclure une image : <input type="checkbox" name="inclureImage" value="img" />
 							<input type="text" name="cheminImage" /><br />
 							
-							<!-- Inclure une vidéo : <input type="checkbox" name="inclureVideo" />-->
+							Inclure une vidéo : <input type="checkbox" name="inclureVideo" value="vid" />
 							<input type="text" name="cheminVideo" /><br />
 							
 							<input type="submit" value="Poster un commentaire" />
