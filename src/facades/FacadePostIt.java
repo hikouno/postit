@@ -12,6 +12,8 @@ import notable.Notable.Vote;
 import postit.*;
 import utilisateur.Invite;
 import utilisateur.Membre;
+import utilisateur.Utilisateur;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
@@ -26,9 +28,8 @@ public class FacadePostIt
 		this.postits = new HashMap<Integer, PostIt>();
 		this.currentId = 0;
 		
-		//Pour tester j'ajoute le post-it "1" :)
-		final Integer ID = this.getNextID();
-		this.currentId +=1;
+		//Pour tester j'ajoute le post-it "-1" :)
+		final Integer ID = -1;
 		Membre m1 = new Membre("darktosteur");
 		m1.setAvatarPath("https://avatars1.githubusercontent.com/u/8598621?v=3&u=0eab29e9e712d19b60152d2e0f6393c5ff81066f&s=400");
 		m1.noter(m1, Vote.PLUS_1);
@@ -46,14 +47,18 @@ public class FacadePostIt
 		
 		Contenu com2 = new Contenu();
 		com2.addElement(new Image("http://www.webinette.fr/img/logo.jpg"));
-		PostIt p = new PostIt(m1, "Mon premier post-it", cont, new PointGeo(0.2, 0.7), ID);
+		PostIt p = new PostIt(m1, "Mon premier post-it", cont, new PointGeo(0.2, 0.7));
 		p.ajouterCommentaire(comm1);
 		p.ajouterCommentaire(new Commentaire(new Invite("hikouno"), com2));
+		
 		postits.put(ID, p);
+		p.setId(ID);
 	}
 	
 	public void ajouterPostIt(PostIt postit) {
-		this.postits.put(postit.getId(), postit);
+		this.postits.put(this.currentId, postit);
+		postit.setId(this.currentId);
+		
 		this.currentId +=1;
 	}
 	
@@ -103,10 +108,10 @@ public class FacadePostIt
 		return postits;
 	}
 	
-	public List<PostIt> recherchePostIts(double longitude, double latitude, double distance, Auteur auteur, double note){
+	public List<PostIt> recherchePostIts(double longitude, double latitude, double distance, Utilisateur auteur, double note){
 		//remplir la liste avec tout les post-its
 		List<PostIt> liste = new ArrayList<>();
-		for(PostIt postIt : this.postits.values()){
+		/*for(PostIt postIt : this.postits.values()){
 			liste.add(postIt);
 		}
 		//enlever ceux du mauvais auteur
@@ -121,12 +126,7 @@ public class FacadePostIt
 		}
 		//enlever ceux trop mauvais
 		Predicate<PostIt> conditionNote = p -> p.getNote()<note;
-		liste.removeIf(conditionNote);
+		liste.removeIf(conditionNote);*/
 		return liste;
-	}
-	
-	public Integer getNextID()
-	{
-		return this.currentId +1;
 	}
 }

@@ -142,7 +142,6 @@ public class GestionPostItServlet extends HttpServlet {
 		{
 			if (membre != null) 
 			{
-				Integer ID = fcdPostIt.getNextID();
 				StringBuffer text = new StringBuffer(request.getParameter("inputdesc"));
 				String txtContenu = new String(text);
 				String lienVideo = (String)request.getAttribute("inputVideo");
@@ -155,17 +154,14 @@ public class GestionPostItServlet extends HttpServlet {
 				cont.addElement(new Video(lienVideo));
 				
 				PointGeo pt = new PointGeo(Double.parseDouble(latitude), Double.parseDouble(longitude));
-				PostIt p = new PostIt(membre, titre, cont, pt, ID);
+				PostIt p = new PostIt(membre, titre, cont, pt);
 				
-				fcdPostIt.ajouterPostIt(p);	
+				fcdPostIt.ajouterPostIt(p);
 				System.out.println("postit added " + p.getTitre());
 				request.getRequestDispatcher("index.jsp").forward(request, response);
 			} 
 			else
 			{
-				
-				Integer ID = fcdPostIt.getNextID();
-				
 				StringBuffer text = new StringBuffer(request.getParameter("inputdesc"));
 				String txtContenu = new String(text);
 				System.out.println(txtContenu);
@@ -196,7 +192,7 @@ public class GestionPostItServlet extends HttpServlet {
 				Invite inv = new Invite(pseudo);
 				
 				PointGeo pt = new PointGeo(Double.parseDouble(latitude), Double.parseDouble(longitude));
-				PostIt p = new PostIt(inv, titre, cont, pt, ID);
+				PostIt p = new PostIt(inv, titre, cont, pt);
 				
 				fcdPostIt.ajouterPostIt(p);
 				System.out.println("postit added " + p.getTitre());

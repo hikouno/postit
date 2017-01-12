@@ -146,7 +146,13 @@ Integer postit_id = postit.getId();
 						</div>
 						
 						<div class="noter_supprimer_commentaire">
-							<div><img alt="supprimer" title="supprimer" src="images/delete-icon.png" /></div>
+							<!-- Suppression d'un commentaire -->
+							<% if (connected) {
+								if (c.getAuteur() == membre || membre == postit.getAuteur()) { %>
+								<div><img alt="supprimer" title="supprimer" src="images/delete-icon.png" /></div>
+							<% }
+							}
+							%>
 							
 							<!-- Note d'un commentaire. -->
 							<% if (connected) {
