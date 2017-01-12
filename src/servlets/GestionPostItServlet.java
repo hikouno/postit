@@ -10,8 +10,11 @@ import javax.servlet.http.HttpSession;
 import javax.ejb.EJB;
 
 import facades.FacadePostIt;
+import multimedia.Texte;
+import multimedia.Video;
 import notable.Notable;
 import postit.*;
+import utilisateur.Invite;
 import utilisateur.Membre;
 
 /**
@@ -50,7 +53,10 @@ public class GestionPostItServlet extends HttpServlet {
 			membre = (Membre) session.getAttribute("membre");
 		
 		String operation = request.getParameter("op");
-		Integer postItId = Integer.parseInt(request.getParameter("postit"));
+		Integer postItId = 0;
+		if (request.getParameter("postit") != null)
+			 postItId = Integer.parseInt(request.getParameter("postit"));
+		
 		
 		if(operation.equals("accueil"))
 		{
@@ -134,7 +140,68 @@ public class GestionPostItServlet extends HttpServlet {
 		}
 		else if(operation.equals("ajPostIt"))
 		{
-			
+			if (membre != null) 
+			{
+				Integer ID = fcdPostIt.getNextID();
+				StringBuffer text = new StringBuffer(request.getParameter("inputdesc"));
+				String txtContenu = new String(text);
+				String lienVideo = (String)request.getAttribute("inputVideo");
+				String latitude = (String)request.getAttribute("inputlat");
+				String longitude = (String)request.getAttribute("inputlng");
+				String titre = (String)request.getAttribute("inputTitre");
+
+				Contenu cont = new Contenu();
+				cont.addElement(new Texte(txtContenu));
+				cont.addElement(new Video(lienVideo));
+				
+				PointGeo pt = new PointGeo(Double.parseDouble(latitude), Double.parseDouble(longitude));
+				PostIt p = new PostIt(membre, titre, cont, pt, ID);
+				
+				fcdPostIt.ajouterPostIt(p);	
+				System.out.println("postit added " + p.getTitre());
+				request.getRequestDispatcher("index.jsp").forward(request, response);
+			} 
+			else
+			{
+				
+				Integer ID = fcdPostIt.getNextID();
+				
+				StringBuffer text = new StringBuffer(request.getParameter("inputdesc"));
+				String txtContenu = new String(text);
+				System.out.println(txtContenu);
+				
+				StringBuffer text1 = new StringBuffer(request.getParameter("inputVideo"));
+				String lienVideo = new String(text1);
+				System.out.println(lienVideo);
+				
+				StringBuffer text2 = new StringBuffer(request.getParameter("inputlat"));
+				String latitude = new String(text2);
+				System.out.println(latitude);
+				
+				StringBuffer text3 = new StringBuffer(request.getParameter("inputlng"));
+				String longitude = new String(text3);
+				System.out.println(longitude);
+				
+				StringBuffer text4 = new StringBuffer(request.getParameter("inputTitre"));
+				String titre = new String(text4);
+				System.out.println(titre);
+				
+				StringBuffer text5 = new StringBuffer(request.getParameter("inputpseudo"));
+				String pseudo = new String(text5);
+				System.out.println(pseudo);
+				
+				Contenu cont = new Contenu();
+				cont.addElement(new Texte(txtContenu));
+				cont.addElement(new Video(lienVideo));
+				Invite inv = new Invite(pseudo);
+				
+				PointGeo pt = new PointGeo(Double.parseDouble(latitude), Double.parseDouble(longitude));
+				PostIt p = new PostIt(inv, titre, cont, pt, ID);
+				
+				fcdPostIt.ajouterPostIt(p);
+				System.out.println("postit added " + p.getTitre());
+				request.getRequestDispatcher("index.jsp").forward(request, response);
+			}
 		}
 		else if(operation.equals("rechPostIt"))
 		{
