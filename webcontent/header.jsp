@@ -18,7 +18,7 @@
 					<p>Bienvenue Mr <%=membre.getNom()%> <%=membre.getPrenoms()%></p>
 						<nav>
 							<ul id="top_nav">
-								<li><a href="monCompte.html"><%=membre.getPseudo()%> </a></li>
+								<li><a href="profil.jsp"><%=membre.getPseudo()%> </a></li>
 								<li><a onclick="logout()">log-out</a></li>
 								<li><a href="#">Help</a></li>
 							</ul>
@@ -41,9 +41,9 @@
 			<nav>
 				<ul id="menu">
 					<li><a href="index.jsp" class="nav1">Accueil</a></li>
-					<li><a href="About.html" class="nav2">Ajout post-it </a></li>
-					<li><a href="Tours.html" class="nav3">Mon compte</a></li>
-					<li class="end"><a href="Contacts.html" class="nav5">Nous contacter</a></li>
+					<li><a href="recherche.jsp" class="nav2">Recherches </a></li>
+					<li><a href="profil.jsp" class="nav3">Mon compte</a></li>
+					<li class="end"><a href="Contacts.html" class="nav4">Nous contacter</a></li>
 				</ul>
 			</nav>
 			<article class="col_s">

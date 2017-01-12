@@ -4,5 +4,6 @@ function logout()
 	  {
 			  op : "logout",
 	  };
-	   $.post("GestionMembresServlet", $.param(params), function(response) { window.location = "/git/index.jsp"; });	  
+	   $.post("GestionMembresServlet", $.param(params), function(response) { window.location = "index.jsp"; });	  
 }
+

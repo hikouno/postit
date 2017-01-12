@@ -56,10 +56,10 @@
 					</div>
 				</div>
        		</article>
-			<article class="col2 pad_left1">
+			<article class="col2 pad_left1" id="carte_wrapper">
 				<h2>Map</h2>
-				<div class="wrapper under">
-					<div id="carte"></div>
+				<div class="wrapper under" >
+						<div id="carte"></div>	
 				</div>
        		</article>
 		</section>

@@ -1,9 +1,11 @@
-.col1, .col2, .col3, .cols, .col_s {float:left}
+.col1, .col2, .col3, .cols, .col_s, .colcarte {float:left}
 .col1 {width:267px}
 .col2 {width:650px}
 .cols {width:304px}
 .col3 {width:393px}
 .col_s{width:393px}
+.colcarte {width:100%}
+
 /* index.html */
 #page1 h1 {padding:27px 0 0 0}
 #page1 #search {padding:46px 0 10px 0}
