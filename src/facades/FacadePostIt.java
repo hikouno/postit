@@ -12,6 +12,9 @@ import notable.Notable.Vote;
 import postit.*;
 import utilisateur.Invite;
 import utilisateur.Membre;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Predicate;
 
 @Singleton
 public class FacadePostIt
@@ -103,7 +106,7 @@ public class FacadePostIt
 	public List<PostIt> recherchePostIts(double longitude, double latitude, double distance, Auteur auteur, double note){
 		//remplir la liste avec tout les post-its
 		List<PostIt> liste = new ArrayList<>();
-		for(PostIt postIt : this.ensemblePostIt){
+		for(PostIt postIt : this.postits.getValues()){
 			liste.add(postIt);
 		}
 		//enlever ceux du mauvais auteur
