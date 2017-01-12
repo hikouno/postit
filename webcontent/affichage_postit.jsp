@@ -132,14 +132,30 @@ Integer postit_id = postit.getId();
 					
 					<h3>Commentaires</h3>
 					
+					<div class="form_post_comment">
+						<form action="GestionPostItServlet?op=ajComm&postit=<%=postit_id%>" method="post">
+							Pseudo : <input type="text" name="pseudo" /><br />
+							
+							<textarea style="width:99.2%;" name="contenuCommentaire" rows="7"></textarea><br />
+							
+							<!-- Inclure une image : <input type="checkbox" name="inclureImage" />-->
+							<input type="text" name="cheminImage" /><br />
+							
+							<!-- Inclure une vidéo : <input type="checkbox" name="inclureVideo" />-->
+							<input type="text" name="cheminVideo" /><br />
+							
+							<input type="submit" value="Poster un commentaire" />
+						</form>
+					</div>
+					
 					<%
-						for (int i = 0; i < commentaires.size(); i++) {
+						for (int i = commentaires.size() - 1; i >= 0; i--) {
 							Commentaire c = commentaires.get(i);
 							Utilisateur c_auteur = c.getAuteur();
 							Contenu c_contenu = c.getContenu();
 					%>
 					
-					<div class="un_commentaire<%if (i != commentaires.size() - 1) { %> under<%}%>">
+					<div class="un_commentaire<%if (i != 0) { %> under<%}%>">
 						<div class="infos_auteur_commentaire">
 							<div class="pseudo_auteur_commentaire"><%=c_auteur.getPseudo()%></div>
 							<% if (c_auteur instanceof Membre) { %><img class="avatar_comm" src="<%=((Membre) c_auteur).getAvatarPath()%>" alt="" /><% } %>

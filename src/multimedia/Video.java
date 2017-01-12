@@ -11,6 +11,6 @@ public class Video implements EltMultimedia
 	}
 	
 	public String toHtml() {
-		return "<iframe width=\"280\" height=\"158\" src=\""+this.chemin+"\" frameborder=\"0\" allowfullscreen></iframe>";
+		return "<div><iframe width=\"280\" height=\"158\" src=\""+this.chemin+"\" frameborder=\"0\" allowfullscreen></iframe></div>";
 	}
 }

@@ -100,6 +100,32 @@ public class FacadePostIt
 		}
 	}
 	
+	/// OPERATIONS D'AJOUT / SUPPRESSION DE COMMENTAIRES
+	/** Ajoute un commentaire
+	 * 
+	 * @param id id du post it concerné
+	 * @param txt éventuel contenu textuel.
+	 * @param img chemin de l'éventuelle image.
+	 * @param video chemin de l'éventuelle vidéo.
+	 */
+	public void ajouterCommentaire(Integer id, String txt, String img, String video, Utilisateur auteur) {
+		
+		PostIt postit = null;
+		if ((postit = getPostItById(id)) != null && !((txt.trim() == "" || txt == null) && img == null && video == null)) {
+			
+			Contenu contenu = new Contenu();
+			if (txt != null && txt.trim() != "") contenu.addElement(new Texte(txt.trim()));
+			if (img != null) contenu.addElement(new Image(img));
+			if (video != null) contenu.addElement(new Video(video));
+			
+			Commentaire commentaire = new Commentaire(auteur, contenu);
+			postit.ajouterCommentaire(commentaire);
+			
+			System.out.println("On ajoute un commentaire à " + postit + " avec " + auteur);
+		}
+		
+	}
+	
 	public void supprimerCommentaire(Integer id, int commentIx, Membre membre) {
 		PostIt postit = null;
 		

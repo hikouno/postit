@@ -152,6 +152,34 @@ public class GestionPostItServlet extends HttpServlet {
 				request.getRequestDispatcher("index.jsp").forward(request, response);
 			}
 		}
+		else if(operation.equals("ajComm")) {
+			
+			String contenu_txt = null, chemin_image = null, chemin_video = null;
+			contenu_txt = (String) request.getParameter("contenuCommentaire");
+
+				chemin_image = (String) request.getParameter("cheminImage");
+			
+				chemin_video = (String) request.getParameter("cheminVideo");
+			
+				System.out.println("chemin video : " + chemin_video);
+				
+			
+			if (membre != null) {
+
+				fcdPostIt.ajouterCommentaire(postItId, contenu_txt, chemin_image, chemin_video, membre);
+				request.getRequestDispatcher("GestionPostItServlet?op=afPostIt&postit="+postItId).forward(request, response);
+				
+			} else {
+				
+				String pseudoInvite = null;
+				pseudoInvite = (String) request.getParameter("pseudo");
+				
+				if (pseudoInvite != null && pseudoInvite.trim() != "")
+					fcdPostIt.ajouterCommentaire(postItId, contenu_txt, chemin_image, chemin_video, new Invite(pseudoInvite.trim()));
+				
+				request.getRequestDispatcher("GestionPostItServlet?op=afPostIt&postit="+postItId).forward(request, response);
+			}
+		}
 		else if(operation.equals("ajPostIt"))
 		{
 			if (membre != null) 

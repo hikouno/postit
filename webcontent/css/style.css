@@ -285,3 +285,13 @@ footer a {color:#439deb}
 {
 	max-width:100px;
 }
+
+.form_post_comment
+{
+	margin-bottom:1.5em;
+}
+
+.form_post_comment *
+{
+	margin:2px;
+}
