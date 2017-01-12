@@ -149,7 +149,7 @@ Integer postit_id = postit.getId();
 							<!-- Suppression d'un commentaire -->
 							<% if (connected) {
 								if (c.getAuteur() == membre || membre == postit.getAuteur()) { %>
-								<div><img alt="supprimer" title="supprimer" src="images/delete-icon.png" /></div>
+								<div><a href="GestionPostItServlet?op=rmComm&postit=<%=postit_id%>&comm=<%=i%>"><img alt="supprimer" title="supprimer" src="images/delete-icon.png" /></a></div>
 							<% }
 							}
 							%>

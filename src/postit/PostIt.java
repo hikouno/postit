@@ -34,6 +34,11 @@ public class PostIt extends Notable
 		this.commentaires.add(commentaire);
 	}
 	
+	public void supprimerCommentaire(int commentIx) {
+		if (0 <= commentIx && commentIx < this.commentaires.size())
+			this.commentaires.remove(commentIx);
+	}
+	
 	public List<Commentaire> getCommentaires() {
 		return this.commentaires;
 	}

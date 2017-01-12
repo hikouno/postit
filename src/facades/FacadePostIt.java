@@ -100,6 +100,23 @@ public class FacadePostIt
 		}
 	}
 	
+	public void supprimerCommentaire(Integer id, int commentIx, Membre membre) {
+		PostIt postit = null;
+		
+		if ((postit = getPostItById(id)) != null) {
+			
+			if (postit.getCommentaires().size() > commentIx) {
+				
+				if (postit.getCommentaires().get(commentIx).getAuteur() == membre || postit.getAuteur() == membre) {
+					
+					postit.supprimerCommentaire(commentIx);
+					System.out.println("On supprime le commentaire " + commentIx + " de " + postit);
+					
+				}
+			}
+		}
+	}
+	
 	public PostIt getPostItById(Integer id) {
 		return this.postits.get(id);
 	}

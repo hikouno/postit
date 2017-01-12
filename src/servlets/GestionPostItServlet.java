@@ -138,6 +138,20 @@ public class GestionPostItServlet extends HttpServlet {
 				request.getRequestDispatcher("index.jsp").forward(request, response);
 			}
 		}
+		else if(operation.equals("rmComm")) {
+			if (membre != null) {
+				
+				Integer commIx = Integer.parseInt(request.getParameter("comm"));
+				
+				fcdPostIt.supprimerCommentaire(postItId, commIx, membre);
+				request.getRequestDispatcher("GestionPostItServlet?op=afPostIt&postit="+postItId).forward(request, response);
+				
+			} else {
+				
+				//Afficher un message d'erreur à l'utilisateur est possible
+				request.getRequestDispatcher("index.jsp").forward(request, response);
+			}
+		}
 		else if(operation.equals("ajPostIt"))
 		{
 			if (membre != null) 
