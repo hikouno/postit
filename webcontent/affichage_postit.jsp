@@ -1,8 +1,6 @@
 <%@ page import="postit.*, utilisateur.*, notable.*, java.util.*" language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-final int NB_COMMENTAIRES_PAR_PAGES = 5;
-
 PostIt postit = (PostIt) request.getAttribute("postit");
 Utilisateur auteur = postit.getAuteur();
 String titre = postit.getTitre();
@@ -135,7 +133,15 @@ Integer postit_id = postit.getId();
 					
 					<div class="form_post_comment">
 						<form action="GestionPostItServlet?op=ajComm&postit=<%=postit_id%>" method="post">
-							<% if (!connected) { %> Pseudo : <input type="text" name="pseudo" /><br /> <% } %>
+							<% if (!connected) { %>
+								Pseudo : <input type="text" name="pseudo" /><br /> <%
+								} else { 
+							%>
+								<div class="infos_auteur_commentaire">
+								<div class="pseudo_auteur_commentaire"><%=membre.getPseudo()%></div>
+									<img class="avatar_comm" src="<%=membre.getAvatarPath()%>" alt="" />
+								</div>
+							<% } %>
 							
 							<textarea style="width:99.2%;" name="contenuCommentaire" rows="7"></textarea><br />
 							
@@ -148,9 +154,43 @@ Integer postit_id = postit.getId();
 							<input type="submit" value="Poster un commentaire" />
 						</form>
 					</div>
-					
 					<%
-						for (int i = commentaires.size() - 1; i >= 0; i--) {
+					if (commentaires.size() > 0) {
+						
+						///GESTION DE LA PAGINATION
+						final int NB_COMMENTAIRES_PAR_PAGE = 5;
+
+						Integer numPage = 1;
+						
+						if (request.getAttribute("p") != null) {
+							try {
+								numPage = Integer.parseInt((String)request.getAttribute("p"));
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+						}
+						
+						System.out.println("NUM PAGE RECUP: " + (String)request.getAttribute("p"));
+						
+						if (numPage <= 0 || (numPage - 1) * NB_COMMENTAIRES_PAR_PAGE >= commentaires.size())
+							numPage = 1;
+						
+						System.out.println("NUM PAGE : " + numPage);
+						int nb_pages = commentaires.size() / NB_COMMENTAIRES_PAR_PAGE + 1;
+								
+						int indDebut = (numPage - 1) * NB_COMMENTAIRES_PAR_PAGE;
+						int indFin = indDebut + NB_COMMENTAIRES_PAR_PAGE - 1;
+						
+						if (indFin >= commentaires.size()) {
+							indFin = commentaires.size() - 1;
+						}
+						
+						System.out.println("IND DEBUT : " + indDebut);
+						System.out.println("IND FIN : " + indFin);
+						
+						///AFFICHAGE DES COMMENTAIRES QUE L'ON VEUT AFFICHER
+						//Les plus récents d'abord
+						for (int i = commentaires.size() - indDebut - 1; i >= commentaires.size() - indFin - 1; i--) {
 							Commentaire c = commentaires.get(i);
 							Utilisateur c_auteur = c.getAuteur();
 							Contenu c_contenu = c.getContenu();
@@ -204,8 +244,13 @@ Integer postit_id = postit.getId();
 					</div>
 					
 					<%
-					}
+						}
+					} else { //PAS DE COMMENTAIRES
 					%>
+					<div>
+						Il n'y a pas encore de commentaire !
+					</div>
+					<% } %>
 				
         	</article>
 		</section>
