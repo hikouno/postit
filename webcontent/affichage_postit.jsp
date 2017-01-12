@@ -1,6 +1,7 @@
 <%@ page import="postit.*, utilisateur.*, notable.*, java.util.*" language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+final int NB_COMMENTAIRES_PAR_PAGES = 5;
 
 PostIt postit = (PostIt) request.getAttribute("postit");
 Utilisateur auteur = postit.getAuteur();
@@ -134,7 +135,7 @@ Integer postit_id = postit.getId();
 					
 					<div class="form_post_comment">
 						<form action="GestionPostItServlet?op=ajComm&postit=<%=postit_id%>" method="post">
-							Pseudo : <input type="text" name="pseudo" /><br />
+							<% if (!connected) { %> Pseudo : <input type="text" name="pseudo" /><br /> <% } %>
 							
 							<textarea style="width:99.2%;" name="contenuCommentaire" rows="7"></textarea><br />
 							
