@@ -106,7 +106,7 @@ public class FacadePostIt
 	public List<PostIt> recherchePostIts(double longitude, double latitude, double distance, Auteur auteur, double note){
 		//remplir la liste avec tout les post-its
 		List<PostIt> liste = new ArrayList<>();
-		for(PostIt postIt : this.postits.getValues()){
+		for(PostIt postIt : this.postits.values()){
 			liste.add(postIt);
 		}
 		//enlever ceux du mauvais auteur
