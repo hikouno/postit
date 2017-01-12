@@ -100,6 +100,28 @@ public class FacadePostIt
 		return postits;
 	}
 	
+	public List<PostIt> recherchePostIts(double longitude, double latitude, double distance, Auteur auteur, double note){
+		//remplir la liste avec tout les post-its
+		List<PostIt> liste = new ArrayList<>();
+		for(PostIt postIt : this.ensemblePostIt){
+			liste.add(postIt);
+		}
+		//enlever ceux du mauvais auteur
+		if(auteur != null){
+			Predicate<PostIt> conditionAuteur = p -> p.getAuteur() != auteur;
+			liste.removeIf(conditionAuteur);
+		}
+		//enlever ceux trop loin
+		if(latitude<=90 && latitude>=-90 && longitude<=180 && longitude>=180 && distance>=0){
+			Predicate<PostIt> conditionDistance = p -> Facade.getDistance(p, latitude, longitude)> distance;
+			liste.removeIf(conditionDistance);
+		}
+		//enlever ceux trop mauvais
+		Predicate<PostIt> conditionNote = p -> p.getNote()<note;
+		liste.removeIf(conditionNote);
+		return liste;
+	}
+	
 	public Integer getNextID()
 	{
 		return this.currentId +1;
