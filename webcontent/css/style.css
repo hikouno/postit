@@ -297,3 +297,19 @@ footer a {color:#439deb}
 {
 	margin:2px;
 }
+
+.affichage_pages_comm
+{
+	width:100%;
+	text-align:center;
+	margin-top:0.5em;
+	font-size:1.25em;
+}
+
+.affichage_pages_comm span
+{
+	display:inline-block;
+	margin-left:2px;
+	margin-right:2px;
+	
+}

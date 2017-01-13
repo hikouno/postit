@@ -26,7 +26,26 @@ Integer postit_id = postit.getId();
 <script type="text/javascript" src="js/Myriad_Pro_600.font.js"></script>
 <script type="text/javascript" src="js/swap.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAIZrHcZmqc80RMhdvsOrwBR6Z-2xwP5s&callback=initMap"></script>
-<script type="text/javascript" src="js/initCarte.js"></script>
+
+<!-- Petit script de gestion de la carte -->
+<script type="text/javascript">
+function initMap() {
+
+	var pos = {lat: <%=geo.getLatitude()%>, lng: <%=geo.getLongitude()%>};
+	
+	map = new google.maps.Map(document.getElementById("carte"), {
+		center: pos,
+		scrollwheel: false,
+		zoom: 14
+	});
+	var marker = new google.maps.Marker({
+	    position: pos,
+	    map: map
+	  });
+
+}
+</script>
+
 <script type="text/javascript" src="js/utilitaires.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
@@ -177,6 +196,10 @@ Integer postit_id = postit.getId();
 						
 						System.out.println("NUM PAGE : " + numPage);
 						int nb_pages = commentaires.size() / NB_COMMENTAIRES_PAR_PAGE + 1;
+						if (commentaires.size() % NB_COMMENTAIRES_PAR_PAGE == 0) {
+							//Dans ce cas une page en trop est comptée
+							nb_pages--;
+						}
 								
 						int indDebut = (numPage - 1) * NB_COMMENTAIRES_PAR_PAGE;
 						int indFin = indDebut + NB_COMMENTAIRES_PAR_PAGE - 1;
@@ -196,7 +219,7 @@ Integer postit_id = postit.getId();
 							Contenu c_contenu = c.getContenu();
 					%>
 					
-					<div class="un_commentaire<%if (i != 0) { %> under<%}%>">
+					<div class="un_commentaire<%if (i != commentaires.size() - indFin - 1) { %> under<%}%>">
 						<div class="infos_auteur_commentaire">
 							<div class="pseudo_auteur_commentaire"><%=c_auteur.getPseudo()%></div>
 							<% if (c_auteur instanceof Membre) { %><img class="avatar_comm" src="<%=((Membre) c_auteur).getAvatarPath()%>" alt="" /><% } %>
@@ -243,14 +266,31 @@ Integer postit_id = postit.getId();
 						</div>
 					</div>
 					
+					
 					<%
 						}
+					
+						//Affichage du nombre de pages
+						if (nb_pages > 1) {
+							%><div class="affichage_pages_comm"><%
+							if (numPage - 1 >= 1) {
+								%><span><a href="GestionPostItServlet?op=afPostIt&postit=<%=postit_id%>&p=<%=numPage-1%>"><%=numPage-1%></a></span><%
+							}
+							%><span><%=numPage%></span><%
+							if (numPage + 1 <= nb_pages) {
+								%><span><a href="GestionPostItServlet?op=afPostIt&postit=<%=postit_id%>&p=<%=numPage+1%>"><%=numPage+1%></a></span><%
+							}
+							%></div><%
+						}
+					
 					} else { //PAS DE COMMENTAIRES
 					%>
 					<div>
 						Il n'y a pas encore de commentaire !
 					</div>
 					<% } %>
+					
+					
 				
         	</article>
 		</section>
