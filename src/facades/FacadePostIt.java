@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
+import java.lang.Math;
+
 @Singleton
 public class FacadePostIt
 {
@@ -151,10 +153,11 @@ public class FacadePostIt
 		return postits;
 	}
 	
+	
 	public List<PostIt> recherchePostIts(double longitude, double latitude, double distance, Utilisateur auteur, double note){
 		//remplir la liste avec tout les post-its
 		List<PostIt> liste = new ArrayList<>();
-		/*for(PostIt postIt : this.postits.values()){
+		for(PostIt postIt : this.postits.values()){
 			liste.add(postIt);
 		}
 		//enlever ceux du mauvais auteur
@@ -164,12 +167,12 @@ public class FacadePostIt
 		}
 		//enlever ceux trop loin
 		if(latitude<=90 && latitude>=-90 && longitude<=180 && longitude>=180 && distance>=0){
-			Predicate<PostIt> conditionDistance = p -> Facade.getDistance(p, latitude, longitude)> distance;
+			Predicate<PostIt> conditionDistance = p -> PointGeo.getDistance(p.getPointGeo, latitude, longitude) > distance;
 			liste.removeIf(conditionDistance);
 		}
 		//enlever ceux trop mauvais
 		Predicate<PostIt> conditionNote = p -> p.getNote()<note;
-		liste.removeIf(conditionNote);*/
+		liste.removeIf(conditionNote);
 		return liste;
 	}
 }
