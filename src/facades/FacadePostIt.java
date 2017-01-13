@@ -47,7 +47,7 @@ public class FacadePostIt
 		
 		Contenu com2 = new Contenu();
 		com2.addElement(new Image("http://www.webinette.fr/img/logo.jpg"));
-		PostIt p = new PostIt(m1, "Mon premier post-it", cont, new PointGeo(0.2, 0.7));
+		PostIt p = new PostIt(m1, "Mon premier post-it", cont, new PointGeo(48.4, -4.483333)); //Brest ;)
 		p.ajouterCommentaire(comm1);
 		p.ajouterCommentaire(new Commentaire(new Invite("hikouno"), com2));
 		
