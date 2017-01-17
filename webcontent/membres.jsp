@@ -86,8 +86,9 @@
 		<article class="col2 pad_left1">
 				<h2>Liste des membres</h2>
 				
-				<form id="RechercheMembreForm" method="post" action="ServletName" action="membres.jsp">
+				<form id="RechercheMembreForm" method="post" action="GestionMembresServlet">
 					<input type="text" name="pseudo_membre" />
+					<input type="hidden" name="op" value="afprofil"/>
 					<input type="submit" value="Rechercher un membre" />
 				</form>
 				

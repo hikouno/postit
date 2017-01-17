@@ -90,7 +90,9 @@ public class GestionMembresServlet extends HttpServlet
 		}
 		else if(operation.equals("afprofil"))
 		{
-			
+		  	String pseudo = request.getParameter("pseudo_membre");
+			request.setAttribute("membre", fcdUsers.getListeMembres().get(pseudo));
+			request.getRequestDispatcher("profil.jsp").forward(request, response);
 		}
 		else if(operation.equals("modProfil"))
 		{
