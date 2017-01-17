@@ -155,24 +155,20 @@ public class FacadePostIt
 	
 	
 	public List<PostIt> recherchePostIts(double longitude, double latitude, double distance, Utilisateur auteur, double note){
-		//remplir la liste avec tout les post-its
-		List<PostIt> liste = new ArrayList<>();
+		//remplir la liste avec chaque post its respectant les conditions
+		boolean condAuteur, condDist, condNote; 
+		List<PostIt> liste = new ArrayList<PostIt>();
 		for(PostIt postIt : this.postits.values()){
-			liste.add(postIt);
+			//identifier les conditions
+			condAuteur = (auteur!=null) && (postIt.getAuteur() != auteur);
+			condDist = (latitude<=90 && latitude>=-90 && longitude<=180 && longitude>=180 && distance>=0) && PointGeo.getDistance(postIt.getPointGeo(), latitude, longitude) > distance;
+			condNote = postIt.getNote() < note;
+			//ajouter ceux du bon auteur, assez près et evec une note assez haute
+			if(!condAuteur && !condDist && !condNote){
+				liste.add(postIt);
+			}
+			
 		}
-		//enlever ceux du mauvais auteur
-		if(auteur != null){
-			Predicate<PostIt> conditionAuteur = p -> p.getAuteur() != auteur;
-			liste.removeIf(conditionAuteur);
-		}
-		//enlever ceux trop loin
-		if(latitude<=90 && latitude>=-90 && longitude<=180 && longitude>=180 && distance>=0){
-			Predicate<PostIt> conditionDistance = p -> PointGeo.getDistance(p.getPointGeo, latitude, longitude) > distance;
-			liste.removeIf(conditionDistance);
-		}
-		//enlever ceux trop mauvais
-		Predicate<PostIt> conditionNote = p -> p.getNote()<note;
-		liste.removeIf(conditionNote);
 		return liste;
 	}
 }
